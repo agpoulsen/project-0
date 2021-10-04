@@ -4,18 +4,29 @@ let gameOver = false;
 const playerOneArray = [];
 const playerTwoArray = [];
 //Stores all the possible win conditions
-const winningArray = [['t-l', 't-m', 't-r'], ['m-l', 'm-m', 'm-r'], ['b-l', 'b-m', 'b-r'], ['t-l', 'm-l', 'b-l'], ['t-m', 'm-m', 'b-m'], ['t-r', 'm-r', 'b-r'], ['t-l', 'm-m', 'b-r'], ['t-r', 'm-m', 'b-l']]
+const winningArray = [
+  [ 't-l', 't-m', 't-r' ],
+  [ 'm-l', 'm-m', 'm-r' ],
+  [ 'b-l', 'b-m', 'b-r' ],
+  [ 't-l', 'm-l', 'b-l' ],
+  [ 't-m', 'm-m', 'b-m' ],
+  [ 't-r', 'm-r', 'b-r' ],
+  [ 't-l', 'm-m', 'b-r' ],
+  [ 't-r', 'm-m', 'b-l' ]
+]
 
-const isGameOver = function(playerarr) {
+//Function which checks players moves against winning conditions. If player has all of the winning selections - the game is over
+const isGameOver = function( playerarr ) {
 
   let finalResult = false;
 
   for ( let i of winningArray ) {
 
-    let result = i.every(element => playerarr.indexOf(element) !== -1 );
+    let result = i.every( element => playerarr.indexOf( element ) !== -1 );
 
-    if (result) {
+    if ( result ) {
       finalResult = true;
+      gameOver = true;
       break;
     }
   }
@@ -23,42 +34,48 @@ const isGameOver = function(playerarr) {
 };
 
 
-$(document).on('click', function(event) {
+$( document ).on( 'click', function( event ) {
 
-  if (playerOne) {
+  if ( gameOver === false ) {
 
-    if ($(event.target).hasClass('block')) {
+    if ( playerOne ) {
 
-      $(event.target).removeClass('block');
-      $(event.target).addClass('playerOne');
-      playerOneArray.push($(event.target).attr('id'))
-      if (isGameOver(playerOneArray)) {
-        gameOver = true;
-      };
-      playerOne = false;
+      if ( $( event.target ).hasClass( 'block' ) ) {
 
-    } else {
+        $( event.target ).removeClass( 'block' );
+        $( event.target ).addClass( 'playerOne' );
+        $( event.target ).text( 'X' );
+        playerOneArray.push( $( event.target ).attr( 'id' ) )
+        if ( isGameOver( playerOneArray ) ) {
+          gameOver = true;
+        };
+        playerOne = false;
 
-      return;
-    }
-  } else {
+      } else {
 
-    if ($(event.target).hasClass('block')) {
-
-      $(event.target).removeClass('block');
-      $(event.target).addClass('playerTwo');
-      playerTwoArray.push($(event.target).attr('id'))
-      if (isGameOver(playerTwoArray)) {
-        gameOver = true;
+        return;
       }
-      playerOne = true;
-
     } else {
 
-      return;
+      if ( $( event.target ).hasClass( 'block' ) ) {
+
+        $( event.target ).removeClass( 'block' );
+        $( event.target ).addClass( 'playerTwo' );
+        $( event.target ).text( 'O' );
+        playerTwoArray.push( $( event.target ).attr( 'id' ) )
+        if ( isGameOver( playerTwoArray ) ) {
+          gameOver = true;
+        }
+        playerOne = true;
+
+      } else {
+
+        return;
+      }
     }
-  }
-});
+  };
+  //Display winner goes here
+} );
 
 //A game of tic tac toe.
 

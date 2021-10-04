@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 body {
   background-color: grey;
 }
@@ -33,6 +35,7 @@ main {
   grid-template-columns: auto auto auto;
   margin: auto;
   vertical-align: middle;
+  font-family: 'Nunito', sans-serif;
 }
 
 .block {
@@ -51,7 +54,7 @@ main {
   border: 3px solid black;
   align-items: center;
   justify-content: center;
-  background-color: limegreen;
+  font-size: 400%;
 }
 
 .playerTwo {
@@ -61,7 +64,7 @@ main {
   border: 3px solid black;
   align-items: center;
   justify-content: center;
-  background-color: pink;
+  font-size: 400%;
 }
 
 #t-l,
