@@ -1,4 +1,27 @@
 let playerOne = true;
+let gameOver = false;
+
+const playerOneArray = [];
+const playerTwoArray = [];
+//Stores all the possible win conditions
+const winningArray = [['t-l', 't-m', 't-r'], ['m-l', 'm-m', 'm-r'], ['b-l', 'b-m', 'b-r'], ['t-l', 'm-l', 'b-l'], ['t-m', 'm-m', 'b-m'], ['t-r', 'm-r', 'b-r'], ['t-l', 'm-m', 'b-r'], ['t-r', 'm-m', 'b-l']]
+
+const isGameOver = function(playerarr) {
+
+  let finalResult = false;
+
+  for ( let i of winningArray ) {
+
+    let result = i.every(element => playerarr.indexOf(element) !== -1 );
+
+    if (result) {
+      finalResult = true;
+      break;
+    }
+  }
+  return finalResult;
+};
+
 
 $(document).on('click', function(event) {
 
@@ -8,8 +31,14 @@ $(document).on('click', function(event) {
 
       $(event.target).removeClass('block');
       $(event.target).addClass('playerOne');
+      playerOneArray.push($(event.target).attr('id'))
+      if (isGameOver(playerOneArray)) {
+        gameOver = true;
+      };
       playerOne = false;
+
     } else {
+
       return;
     }
   } else {
@@ -18,8 +47,14 @@ $(document).on('click', function(event) {
 
       $(event.target).removeClass('block');
       $(event.target).addClass('playerTwo');
+      playerTwoArray.push($(event.target).attr('id'))
+      if (isGameOver(playerTwoArray)) {
+        gameOver = true;
+      }
       playerOne = true;
+
     } else {
+
       return;
     }
   }
