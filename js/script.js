@@ -14,7 +14,7 @@ const winningArray = [
   [ 't-r', 'm-r', 'b-r' ],
   [ 't-l', 'm-m', 'b-r' ],
   [ 't-r', 'm-m', 'b-l' ]
-]
+];
 
 //Function which checks players moves against winning conditions. If player has all of the winning selections - the game is over
 const isGameOver = function( playerarr ) {
@@ -53,7 +53,7 @@ const displayWinningLine = function ( playerArr ) {
   }
 };
 
-
+//Game starts on first player clicking on the grid
 $( document ).on( 'click', function( event ) {
 
   if ( gameOver === false ) {
