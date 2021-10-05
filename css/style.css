@@ -67,6 +67,10 @@ main {
   font-size: 400%;
 }
 
+.winning {
+  background-color: yellow;
+}
+
 #t-l,
 #t-m,
 #t-r {

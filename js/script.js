@@ -1,5 +1,6 @@
 let playerOne = true;
 let gameOver = false;
+let counter = 1;
 
 const playerOneArray = [];
 const playerTwoArray = [];
@@ -33,6 +34,25 @@ const isGameOver = function( playerarr ) {
   return finalResult;
 };
 
+//Function to highlight the winning row:
+const displayWinningLine = function ( playerArr ) {
+
+  for ( let i of winningArray ) {
+
+    let result = i.every( element => playerArr.indexOf( element ) !== -1 );
+
+    if ( result ) {
+
+      for (let idx = 0; idx < i.length; idx++) {
+
+        console.log(i[idx])
+
+        $(`#${i[idx]}`).css('background-color', 'yellow');
+      }
+    };
+  }
+};
+
 
 $( document ).on( 'click', function( event ) {
 
@@ -46,7 +66,10 @@ $( document ).on( 'click', function( event ) {
         $( event.target ).addClass( 'playerOne' );
         $( event.target ).text( 'X' );
         playerOneArray.push( $( event.target ).attr( 'id' ) )
+        counter++;
+
         if ( isGameOver( playerOneArray ) ) {
+          displayWinningLine( playerOneArray );
           gameOver = true;
         };
         playerOne = false;
@@ -63,7 +86,10 @@ $( document ).on( 'click', function( event ) {
         $( event.target ).addClass( 'playerTwo' );
         $( event.target ).text( 'O' );
         playerTwoArray.push( $( event.target ).attr( 'id' ) )
+        counter++;
+
         if ( isGameOver( playerTwoArray ) ) {
+          displayWinningLine( playerTwoArray );
           gameOver = true;
         }
         playerOne = true;
