@@ -1,6 +1,6 @@
 let playerOne = true;
 let gameOver = false;
-let isWinner = false;
+let winner = '';
 let counter = 0;
 
 const playerOneArray = [];
@@ -73,14 +73,17 @@ $( document ).on( 'click', function( event ) {
         $( event.target ).removeClass( 'block' );
         $( event.target ).addClass( 'playerOne' );
         $( event.target ).text( 'X' );
-        playerOneArray.push( $( event.target ).attr( 'id' ) )
+        playerOneArray.push( $( event.target ).attr( 'id' ) );
 
         if ( isGameOver( playerOneArray ) ) {
 
+          winner = 'Player One';
           displayWinningLine( playerOneArray );
           gameOver = true;
         };
+
         playerOne = false;
+        $('#turns').text("Player Two's turn")
         drawChecker();
 
       } else {
@@ -95,14 +98,17 @@ $( document ).on( 'click', function( event ) {
         $( event.target ).removeClass( 'block' );
         $( event.target ).addClass( 'playerTwo' );
         $( event.target ).text( 'O' );
-        playerTwoArray.push( $( event.target ).attr( 'id' ) )
+        playerTwoArray.push( $( event.target ).attr( 'id' ) );
 
         if ( isGameOver( playerTwoArray ) ) {
 
+          winner = 'Player Two';
           displayWinningLine( playerTwoArray );
           gameOver = true;
         }
+
         playerOne = true;
+        $('#turns').text("Player One's turn")
         drawChecker();
 
       } else {
