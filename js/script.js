@@ -1,10 +1,14 @@
+//Global variables
 let playerOne = true;
 let gameOver = false;
+let playerOneName = 'Jimothy';
+let playerTwoName = 'Bob';
 let winner = '';
 let counter = 0;
 
 const playerOneArray = [];
 const playerTwoArray = [];
+
 //Stores all the possible win conditions
 const winningArray = [
   [ 't-l', 't-m', 't-r' ],
@@ -21,8 +25,16 @@ const drawChecker = function() {
 
   if ( counter >= 9 && gameOver === false) {
 
-    window.alert( 'The game is a draw!' );
+  let drawboard = $(`<div id='winner-display'>The game is a draw!</div>`);
+  $('#board').prepend(drawboard)
   }
+};
+
+//This function creates a div that shows sho the winner is;
+const displayWinner = function() {
+
+  let winboard = $(`<div id='winner-display'>Game Over! ${winner} wins!</div>`);
+  $('#board').prepend(winboard);
 };
 
 //Function which checks players moves against winning conditions. If player has all of the winning selections - the game is over
@@ -77,13 +89,13 @@ $( document ).on( 'click', function( event ) {
 
         if ( isGameOver( playerOneArray ) ) {
 
-          winner = 'Player One';
+          winner = `${playerOneName}`;
           displayWinningLine( playerOneArray );
           gameOver = true;
         };
 
         playerOne = false;
-        $('#turns').text("Player Two's turn")
+        $('#turns').text(`${playerTwoName}'s turn`)
         drawChecker();
 
       } else {
@@ -102,13 +114,13 @@ $( document ).on( 'click', function( event ) {
 
         if ( isGameOver( playerTwoArray ) ) {
 
-          winner = 'Player Two';
+          winner = `${playerTwoName}`;
           displayWinningLine( playerTwoArray );
           gameOver = true;
         }
 
         playerOne = true;
-        $('#turns').text("Player One's turn")
+        $('#turns').text(`${playerOneName}'s turn'`)
         drawChecker();
 
       } else {
@@ -117,5 +129,7 @@ $( document ).on( 'click', function( event ) {
       }
     }
   };
-  //Display winner goes here
+  if (gameOver) {
+    displayWinner();
+  }
 } );

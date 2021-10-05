@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 body {
-  background-color: grey;
+  background-color:black;
+background-image:
+radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
+radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
+background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;;
 }
 
 #container {
@@ -95,6 +102,19 @@ main {
 #m-l,
 #b-l {
   border-left: none;
+}
+
+#winner-display {
+  z-index: 999;
+  margin: 0 auto;
+  position: absolute;
+  align-items: center;
+  border-radius: 1em;
+  background-color: white;
+  text-align: center;
+  padding: 0.5em;
+  font-size: 200%;
+  border: 2px solid black;
 }
 
 .block:hover {
