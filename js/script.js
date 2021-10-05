@@ -1,6 +1,7 @@
 let playerOne = true;
 let gameOver = false;
-let counter = 1;
+let isWinner = false;
+let counter = 0;
 
 const playerOneArray = [];
 const playerTwoArray = [];
@@ -15,6 +16,14 @@ const winningArray = [
   [ 't-l', 'm-m', 'b-r' ],
   [ 't-r', 'm-m', 'b-l' ]
 ];
+//Draw checker - checks to see if the game is not winnable
+const drawChecker = function() {
+
+  if ( counter >= 9 && gameOver === false) {
+
+    window.alert( 'The game is a draw!' );
+  }
+};
 
 //Function which checks players moves against winning conditions. If player has all of the winning selections - the game is over
 const isGameOver = function( playerarr ) {
@@ -35,7 +44,7 @@ const isGameOver = function( playerarr ) {
 };
 
 //Function to highlight the winning row:
-const displayWinningLine = function ( playerArr ) {
+const displayWinningLine = function( playerArr ) {
 
   for ( let i of winningArray ) {
 
@@ -43,11 +52,9 @@ const displayWinningLine = function ( playerArr ) {
 
     if ( result ) {
 
-      for (let idx = 0; idx < i.length; idx++) {
+      for ( let idx = 0; idx < i.length; idx++ ) {
 
-        console.log(i[idx])
-
-        $(`#${i[idx]}`).css('background-color', 'yellow');
+        $( `#${i[idx]}` ).css( 'background-color', 'yellow' );
       }
     };
   }
@@ -58,21 +65,23 @@ $( document ).on( 'click', function( event ) {
 
   if ( gameOver === false ) {
 
-    if ( playerOne ) {
+    if ( playerOne ) { //checks to see if it's player one's turn - if so use 'x'
 
       if ( $( event.target ).hasClass( 'block' ) ) {
 
+        counter++;
         $( event.target ).removeClass( 'block' );
         $( event.target ).addClass( 'playerOne' );
         $( event.target ).text( 'X' );
         playerOneArray.push( $( event.target ).attr( 'id' ) )
-        counter++;
 
         if ( isGameOver( playerOneArray ) ) {
+
           displayWinningLine( playerOneArray );
           gameOver = true;
         };
         playerOne = false;
+        drawChecker();
 
       } else {
 
@@ -82,17 +91,19 @@ $( document ).on( 'click', function( event ) {
 
       if ( $( event.target ).hasClass( 'block' ) ) {
 
+        counter++;
         $( event.target ).removeClass( 'block' );
         $( event.target ).addClass( 'playerTwo' );
         $( event.target ).text( 'O' );
         playerTwoArray.push( $( event.target ).attr( 'id' ) )
-        counter++;
 
         if ( isGameOver( playerTwoArray ) ) {
+
           displayWinningLine( playerTwoArray );
           gameOver = true;
         }
         playerOne = true;
+        drawChecker();
 
       } else {
 
@@ -102,19 +113,3 @@ $( document ).on( 'click', function( event ) {
   };
   //Display winner goes here
 } );
-
-//A game of tic tac toe.
-
-//Select player
-
-// First player selects a segment
-
-// Second player selects a segment which hasn't previously been selected
-
-// Check if the win condition has been met.
-
-// if win condition has been met, game is over - display winner and winning row
-
-// else, continue Game
-
-// if the board is full - it is a draw - display draw
