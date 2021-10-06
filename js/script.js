@@ -1,3 +1,12 @@
+// Open a dialog box to get player names and player tokens
+// $('#dialog').dialog({
+//   appendTo: '#container',
+//   autoOpen: true,
+//   modal: true,
+//   buttons: { OK: function() {$(this).dialog('close');}}
+//   ,
+// });
+
 //Global variables
 let playerOne = true;
 let gameOver = false;
