@@ -16,7 +16,7 @@ background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;;
   margin: 0 auto;
   position: relative;
   width: 800px;
-  height: 600px;
+  height: 800px;
   border: 5px solid black;
   border-radius: 1em;
 }
@@ -116,6 +116,27 @@ main {
   padding: 0.5em;
   font-size: 200%;
   border: 2px solid black;
+}
+
+#new-game {
+  position: relative;
+  margin: 4em auto;
+  align-items: center;
+  display: block;
+  background-color: red;
+}
+
+#scoreboard {
+  display: block;
+  border: 3px solid red;
+  text-align: center;
+}
+
+.score-display {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin: auto;
 }
 
 .block:hover {

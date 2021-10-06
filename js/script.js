@@ -5,6 +5,8 @@ let playerOneName = 'Jimothy';
 let playerTwoName = 'Bob';
 let winner = '';
 let counter = 0;
+let playerOneScore = 0;
+let playerTwoScore = 0;
 
 let playerOneArray = [];
 let playerTwoArray = [];
@@ -20,6 +22,15 @@ const winningArray = [
   [ 't-l', 'm-m', 'b-r' ],
   [ 't-r', 'm-m', 'b-l' ]
 ];
+
+//This function updates the scoreboard
+const updateScore = function() {
+
+  $('#player-one-score').text(`${playerOneName}: ${playerOneScore}`);
+  $('#player-two-score').text(`${playerTwoName}: ${playerTwoScore}`);
+};
+
+updateScore();
 
 //Draw checker - checks to see if the game is not winnable
 const drawChecker = function() {
@@ -43,7 +54,7 @@ const resetBoard = function() {
   playerTwoArray = [];
 
   $('#board>*').removeClass(['playerOne', 'playerTwo', 'winning']).text('').css('background-color', '').addClass('block');
-  $('#turns').text(`${playerOneName}'s turn'`);
+  $('#turns').text(`${playerOneName}'s turn`);
   $('#winner-display').remove();
 };
 
@@ -108,6 +119,7 @@ $( document ).on( 'click', function( event ) {
 
           winner = `${playerOneName}`;
           displayWinningLine( playerOneArray );
+          playerOneScore++;
           gameOver = true;
         };
 
@@ -133,6 +145,7 @@ $( document ).on( 'click', function( event ) {
 
           winner = `${playerTwoName}`;
           displayWinningLine( playerTwoArray );
+          playerTwoScore++;
           gameOver = true;
         }
 
@@ -148,6 +161,7 @@ $( document ).on( 'click', function( event ) {
   };
   if (gameOver) {
     displayWinner();
+    updateScore();
   }
 });
 
