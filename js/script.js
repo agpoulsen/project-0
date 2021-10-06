@@ -6,8 +6,8 @@ let playerTwoName = 'Bob';
 let winner = '';
 let counter = 0;
 
-const playerOneArray = [];
-const playerTwoArray = [];
+let playerOneArray = [];
+let playerTwoArray = [];
 
 //Stores all the possible win conditions
 const winningArray = [
@@ -20,6 +20,7 @@ const winningArray = [
   [ 't-l', 'm-m', 'b-r' ],
   [ 't-r', 'm-m', 'b-l' ]
 ];
+
 //Draw checker - checks to see if the game is not winnable
 const drawChecker = function() {
 
@@ -30,7 +31,23 @@ const drawChecker = function() {
   }
 };
 
-//This function creates a div that shows sho the winner is;
+//This function resets the game board
+const resetBoard = function() {
+
+  $('#winboard').remove();
+  playerOne = true;
+  gameOver = false;
+  counter = 0;
+
+  playerOneArray = [];
+  playerTwoArray = [];
+
+  $('#board>*').removeClass(['playerOne', 'playerTwo', 'winning']).text('').css('background-color', '').addClass('block');
+  $('#turns').text(`${playerOneName}'s turn'`);
+  $('#winner-display').remove();
+};
+
+//This function creates a div that shows who the winner is;
 const displayWinner = function() {
 
   let winboard = $(`<div id='winner-display'>Game Over! ${winner} wins!</div>`);
@@ -132,4 +149,6 @@ $( document ).on( 'click', function( event ) {
   if (gameOver) {
     displayWinner();
   }
-} );
+});
+
+$('#new-game').on('click', resetBoard);
