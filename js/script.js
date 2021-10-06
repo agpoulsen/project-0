@@ -10,8 +10,10 @@
 //Global variables
 let playerOne = true;
 let gameOver = false;
-let playerOneName = 'Jimothy';
-let playerTwoName = 'Bob';
+let playerOneName;
+let playerTwoName;
+let playerOneToken = $('#player-one-token').val();
+let playerTwoToken = $('#player-two-token').val();
 let winner = '';
 let counter = 0;
 let playerOneScore = 0;
@@ -31,6 +33,50 @@ const winningArray = [
   [ 't-l', 'm-m', 'b-r' ],
   [ 't-r', 'm-m', 'b-l' ]
 ];
+
+//This function takes the values from the inputs and stores them in the global variable when the update button is pressed.
+$('#update-name').on('click', function() {
+
+  if ($('#player-one-name').val() === '') {
+
+    playerOneName = 'Player One';
+  }
+  else {
+
+    playerOneName = $('#player-one-name').val();
+  }
+
+  if ($('#player-two-name').val() === '') {
+
+    playerTwoName = 'Player Two';
+  }
+  else {
+
+    playerTwoName = $('#player-two-name').val();
+  }
+
+  if ($('#player-one-token').val() === '') {
+
+    playerOneToken = 'X';
+  }
+  else {
+
+    playerOneToken = $('#player-one-token').val();
+  }
+
+  if ($('#player-two-token').val() === '') {
+
+    playerTwoToken = 'O';
+  }
+  else {
+
+    playerTwoToken = $('#player-two-token').val();
+  }
+
+  updateScore();
+
+
+});
 
 //This function updates the scoreboard
 const updateScore = function() {
@@ -121,7 +167,7 @@ $( document ).on( 'click', function( event ) {
         counter++;
         $( event.target ).removeClass( 'block' );
         $( event.target ).addClass( 'playerOne' );
-        $( event.target ).text( 'X' );
+        $( event.target ).text( playerOneToken );
         playerOneArray.push( $( event.target ).attr( 'id' ) );
 
         if ( isGameOver( playerOneArray ) ) {
@@ -147,7 +193,7 @@ $( document ).on( 'click', function( event ) {
         counter++;
         $( event.target ).removeClass( 'block' );
         $( event.target ).addClass( 'playerTwo' );
-        $( event.target ).text( 'O' );
+        $( event.target ).text( playerTwoToken );
         playerTwoArray.push( $( event.target ).attr( 'id' ) );
 
         if ( isGameOver( playerTwoArray ) ) {
