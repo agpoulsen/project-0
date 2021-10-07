@@ -67,7 +67,8 @@ $('#update-name').on('click', function() {
 
   if (playerOneToken.length > 2 || playerTwoToken.length > 2) {
     alert('Hilarious. Pick a shorter token.');
-    return;
+    $('#player-one-token').val('');
+    $('#player-one-token').val('');
   }
 
   updateScore();
