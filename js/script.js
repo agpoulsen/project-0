@@ -92,7 +92,7 @@ const drawChecker = function() {
 //This function resets the game board
 const resetBoard = function() {
 
-  $('#winboard').remove();
+  $('.winner-page').remove();
   playerOne = true;
   gameOver = false;
   counter = 0;
@@ -108,7 +108,7 @@ const resetBoard = function() {
 //This function creates a div that shows who the winner is;
 const displayWinner = function() {
 
-  let winboard = $(`<div id='winner-display'>Game Over! ${winner} wins!</div>`);
+  let winboard = $(`<div id='winner-display' class='winner-page'>Game Over! ${winner} wins!</div>`);
   $('#board').prepend(winboard);
 };
 
