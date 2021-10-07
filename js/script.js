@@ -1,13 +1,16 @@
-
 //Global variables
 let playerOne = true;
 let gameOver = false;
+
 let playerOneName = 'Player One';
 let playerTwoName = 'Player Two';
+
 let playerOneToken = 'X';
 let playerTwoToken = 'O';
+
 let winner = '';
 let counter = 0;
+
 let playerOneScore = 0;
 let playerTwoScore = 0;
 
@@ -27,60 +30,56 @@ const winningArray = [
 ];
 
 //This function takes the values from the inputs and stores them in the global variable when the update button is pressed.
-$('#update-name').on('click', function() {
+$( '#update-name' ).on( 'click', function() {
 
-  if ($('#player-one-name').val() === '') {
+  if ( $( '#player-one-name' ).val() === '' ) {
 
     playerOneName = 'Player One';
-  }
-  else {
+  } else {
 
-    playerOneName = $('#player-one-name').val();
+    playerOneName = $( '#player-one-name' ).val();
   }
 
-  if ($('#player-two-name').val() === '') {
+  if ( $( '#player-two-name' ).val() === '' ) {
 
     playerTwoName = 'Player Two';
-  }
-  else {
+  } else {
 
-    playerTwoName = $('#player-two-name').val();
+    playerTwoName = $( '#player-two-name' ).val();
   }
 
-  if ($('#player-one-token').val() === '') {
+  if ( $( '#player-one-token' ).val() === '' ) {
 
     playerOneToken = 'X';
-  }
-  else {
+  } else {
 
-    playerOneToken = $('#player-one-token').val();
+    playerOneToken = $( '#player-one-token' ).val();
   }
 
-  if ($('#player-two-token').val() === '') {
+  if ( $( '#player-two-token' ).val() === '' ) {
 
     playerTwoToken = 'O';
-  }
-  else {
+  } else {
 
-    playerTwoToken = $('#player-two-token').val();
+    playerTwoToken = $( '#player-two-token' ).val();
   }
 
-  if (playerOneToken.length > 2 || playerTwoToken.length > 2) {
-    alert('Hilarious. Pick a shorter token.');
-    $('#player-one-token').val('');
-    $('#player-one-token').val('');
+  if ( playerOneToken.length > 2 || playerTwoToken.length > 2 ) {
+    alert( 'Hilarious. Pick a shorter token.' );
+    $( '#player-one-token' ).val( '' );
+    $( '#player-one-token' ).val( '' );
   }
 
   updateScore();
 
 
-});
+} );
 
 //This function updates the scoreboard
 const updateScore = function() {
 
-  $('#player-one-score').text(`${playerOneName}: ${playerOneScore}`);
-  $('#player-two-score').text(`${playerTwoName}: ${playerTwoScore}`);
+  $( '#player-one-score' ).text( `${playerOneName}: ${playerOneScore}` );
+  $( '#player-two-score' ).text( `${playerTwoName}: ${playerTwoScore}` );
 };
 
 updateScore();
@@ -88,17 +87,17 @@ updateScore();
 //Draw checker - checks to see if the game is not winnable
 const drawChecker = function() {
 
-  if ( counter >= 9 && gameOver === false) {
+  if ( counter >= 9 && gameOver === false ) {
 
-  let drawboard = $(`<div id='winner-display'>The game is a draw!</div>`);
-  $('#board').prepend(drawboard)
+    let drawboard = $( `<div id='winner-display'>The game is a draw!</div>` );
+    $( '#board' ).prepend( drawboard )
   }
 };
 
 //This function resets the game board
 const resetBoard = function() {
 
-  $('.winner-page').remove();
+  $( '.winner-page' ).remove();
   playerOne = true;
   gameOver = false;
   counter = 0;
@@ -106,16 +105,16 @@ const resetBoard = function() {
   playerOneArray = [];
   playerTwoArray = [];
 
-  $('#board>*').removeClass(['playerOne', 'playerTwo', 'winning']).text('').css('background-color', '').addClass('block');
-  $('#turns').text(`${playerOneName}'s turn`);
-  $('#winner-display').remove();
+  $( '#board>*' ).removeClass( [ 'playerOne', 'playerTwo', 'winning' ] ).text( '' ).css( 'background-color', '' ).addClass( 'block' );
+  $( '#turns' ).text( `${playerOneName}'s turn` );
+  $( '#winner-display' ).remove();
 };
 
 //This function creates a div that shows who the winner is;
 const displayWinner = function() {
 
-  let winboard = $(`<div id='winner-display' class='winner-page'>Game Over! ${winner} wins!</div>`);
-  $('#board').prepend(winboard);
+  let winboard = $( `<div id='winner-display' class='winner-page'>Game Over! ${winner} wins!</div>` );
+  $( '#board' ).prepend( winboard );
 };
 
 //Function which checks players moves against winning conditions. If player has all of the winning selections - the game is over
@@ -177,7 +176,7 @@ $( document ).on( 'click', function( event ) {
         };
 
         playerOne = false;
-        $('#turns').text(`${playerTwoName}'s turn`)
+        $( '#turns' ).text( `${playerTwoName}'s turn` )
         drawChecker();
 
       } else {
@@ -203,7 +202,7 @@ $( document ).on( 'click', function( event ) {
         }
 
         playerOne = true;
-        $('#turns').text(`${playerOneName}'s turn'`)
+        $( '#turns' ).text( `${playerOneName}'s turn'` )
         drawChecker();
 
       } else {
@@ -212,10 +211,10 @@ $( document ).on( 'click', function( event ) {
       }
     }
   };
-  if (gameOver) {
+  if ( gameOver ) {
     displayWinner();
     updateScore();
   }
-});
+} );
 
-$('#new-game').on('click', resetBoard);
+$( '#new-game' ).on( 'click', resetBoard );
