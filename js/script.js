@@ -1,19 +1,11 @@
-// Open a dialog box to get player names and player tokens
-// $('#dialog').dialog({
-//   appendTo: '#container',
-//   autoOpen: true,
-//   modal: true,
-//   buttons: { OK: function() {$(this).dialog('close');}}
-//   ,
-// });
 
 //Global variables
 let playerOne = true;
 let gameOver = false;
-let playerOneName;
-let playerTwoName;
-let playerOneToken = $('#player-one-token').val();
-let playerTwoToken = $('#player-two-token').val();
+let playerOneName = 'Player One';
+let playerTwoName = 'Player Two';
+let playerOneToken = 'X';
+let playerTwoToken = 'O';
 let winner = '';
 let counter = 0;
 let playerOneScore = 0;
