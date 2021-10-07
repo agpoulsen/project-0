@@ -153,6 +153,10 @@ const displayWinningLine = function( playerArr ) {
 };
 
 //Game starts on first player clicking on the grid
+
+//It is in desperate need of refactoring.
+
+//Be warned - HERE BE DRAGONS
 $( document ).on( 'click', function( event ) {
 
   if ( gameOver === false ) {
@@ -217,4 +221,5 @@ $( document ).on( 'click', function( event ) {
   }
 } );
 
+//On clicking the new game button - the resetBoard function runs.
 $( '#new-game' ).on( 'click', resetBoard );
